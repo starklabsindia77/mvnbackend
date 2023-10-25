@@ -6,11 +6,18 @@ dotenv.config();
 
 
 const transporter = nodemailer.createTransport({
-    service: 'Gmail',
-    auth: {
-      user: 'hr.dttechnopoint@gmail.com',
-      pass: 'mxvempdlnzvkhxhb'
-    }
+  host: 'smtp.ethereal.email',
+  port: 587,
+  auth: {
+      user: 'devyn.miller72@ethereal.email',
+      pass: 'WPjg3RV6CQenBzCQF4'
+  }
   });
-  
-  const senderMail = "visaportal@gmail.com"
+  const careerMailSender = "hr@mvn.edu.in"
+  const enquiryMailSender = "info@mvn.edu.in"
+
+  module.exports = {
+    transporter: transporter,
+    careerMailSender: careerMailSender,
+    enquiryMailSender: enquiryMailSender,
+  }
