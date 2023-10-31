@@ -25,7 +25,6 @@ exports.sentEmail = async ({ to, subject, mailBody, profile, resume }) => {
     });
 }
 exports.sentEnquiryEmail = async ({ to, subject, mailBody, profile, resume }) => {
-    console.log('mailBody:::1', profile,resume)
     let mailOptions = {
         from: senderMail,
         to: to,
@@ -33,6 +32,7 @@ exports.sentEnquiryEmail = async ({ to, subject, mailBody, profile, resume }) =>
         html: mailBody,
     }
     transporter.sendMail(mailOptions, function (error, info) {
+        console.log('mailBody:::1', error, info)
 
         if (error) {
             return { err: error, res: false }
