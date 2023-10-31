@@ -18,9 +18,15 @@ const CareersRoutes = require('./api/careermail')
 
 app.use("/api", CareersRoutes);
 
-app.use(function (req, res, next) {
-    next(createError(404));
-});
+// app.use(function (req, res, next) {
+//     next(createError(404));
+// });
+
+
+app.get('/testapi',(req,res)=>{  
+    res.send('Hello Guys I am authenticated')
+})
+
 
 // error handler
 app.use(function (err, req, res, next) {
