@@ -41,3 +41,21 @@ exports.sentEnquiryEmail = async ({ to, subject, mailBody, profile, resume }) =>
         }
     });
 }
+
+exports.sentAdmissionEmail = async ({ to, subject, mailBody, profile, resume }) => {
+    let mailOptions = {
+        from: senderMail,
+        to: to,
+        subject: subject,
+        html: mailBody,
+    }
+    transporter.sendMail(mailOptions, function (error, info) {
+        console.log('mailBody:::1', error, info)
+
+        if (error) {
+            return { err: error, res: false }
+        } else {
+            return { err: error, res: true }
+        }
+    });
+}
