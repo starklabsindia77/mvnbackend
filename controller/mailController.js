@@ -3,7 +3,7 @@ const moment = require('moment')
 const { sentEmail, sentEnquiryEmail } = require("../services/emailService")
 const emailConstent = require("../constants/emailTemplates.json");
 const { convertBase64ToFile } = require('../services/util')
-const {careerMailSender,enquiryMailSender}=require('../config')
+const {careerMailSender,enquiryMailSender,admissionMailSender,studentGrievanceMailSender}=require('../config')
 exports.CareerMail = async (req, res) => {
   let request = req.body
   let profileImage = await convertBase64ToFile(request?.profile?.url, request?.profile?.type);
@@ -35,6 +35,30 @@ exports.EnquiryMail = async (req, res) => {
   const mailresponse = sentEnquiryEmail({
     to: request.email=="arsingh0425@gmail.com"?"arsingh0425@gmail.com":request.email=="varunps191@gmail.com"?"varunps191@gmail.com":enquiryMailSender,
     subject: "Apply for enquiry",
+    mailBody: mailBody,
+    profile: {
+
+    },
+    resume: {
+
+    },
+  })
+  console.log('mailresponse::', mailresponse)
+
+  return res.send({
+    success: true,
+    message: "Mail Send successfully !"
+  })
+
+}
+
+
+exports.StudentGrievance = async (req, res) => {
+  let request = req.body
+  let mailBody = util.format(emailConstent.studentGrievanceMessageText, request.name, request.roll_number, request.department,request.message, moment(new Date()).format("DD-MM-YYYY"));
+  const mailresponse = sentEnquiryEmail({
+    to: studentGrievanceMailSender,
+    subject: "Apply for student grievance",
     mailBody: mailBody,
     profile: {
 
@@ -145,7 +169,7 @@ exports.AdmissionForm = async (req, res) => {
     request.pharmaceutical_sciences
     , moment(new Date()).format("DD-MM-YYYY"));
   const mailresponse = sentEnquiryEmail({
-    to: request.email=="arsingh0425@gmail.com"?"arsingh0425@gmail.com":request.email=="varunps191@gmail.com"?"varunps191@gmail.com":enquiryMailSender,
+    to: request.student_email=="arsingh0425@gmail.com"?"arsingh0425@gmail.com":request.student_email=="varunps191@gmail.com"?"varunps191@gmail.com":admissionMailSender,
     subject: "Student apply admission form",
     mailBody: mailBody,
     profile: {
