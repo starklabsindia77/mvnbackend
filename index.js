@@ -4,7 +4,7 @@ const cors = require('cors')
 var createError = require('http-errors');
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
-const rateLimitMiddleware = require("./middlewares/ratelimit");
+const rateLimitMiddleware = require("./middlewares/rateLimiter");
 const app = express()
 dotenv.config();
 app.use(cookieParser());
