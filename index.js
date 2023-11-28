@@ -4,15 +4,23 @@ const cors = require('cors')
 var createError = require('http-errors');
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
+const rateLimitMiddleware = require("./middlewares/ratelimit");
 const app = express()
 dotenv.config();
 app.use(cookieParser());
+
+app.use(rateLimitMiddleware);
 //to not get any deprecation warning or error
 //support parsing of application/x-www-form-urlencoded post data
 app.use(bodyParser.json({ limit: '50mb' }));
 //app.use(bodyParser.urlencoded());
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
-app.use(cors())
+var corsOptions = {
+    origin: 'https://www.mvn.edu.in/',
+    optionsSuccessStatus: 200 // For legacy browser support
+}
+
+app.use(cors(corsOptions));
 app.use('/images', express.static('attachments'));
 const CareersRoutes = require('./api/careermail')
 
