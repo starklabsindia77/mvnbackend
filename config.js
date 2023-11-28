@@ -22,9 +22,12 @@ const transporter = nodemailer.createTransport({
   });
   const careerMailSender = "hr@mvn.edu.in"
   const enquiryMailSender = "info@mvn.edu.in"
-
+  const admissionMailSender="admissions@mvn.edu.in"
+  const studentGrievanceMailSender="ramveer.singh@mvn.edu.in"
   module.exports = {
     transporter: transporter,
     careerMailSender: careerMailSender,
     enquiryMailSender: enquiryMailSender,
+    admissionMailSender:admissionMailSender,
+    studentGrievanceMailSender:studentGrievanceMailSender
   }
