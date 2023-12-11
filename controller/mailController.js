@@ -79,7 +79,7 @@ exports.StudentGrievance = async (req, res) => {
 exports.AdmissionForm = async (req, res) => {
   let request = req.body
   let mailBody = util.format(emailConstent.admissionMessaqgeText, 
-    student_name,
+    request.student_name,
     request.father_name,
     request.father_aadhar_num,
     request.mother_name,
@@ -123,11 +123,6 @@ exports.AdmissionForm = async (req, res) => {
     request.entrance_exam[2].score,
     request.entrance_exam[2].rank,
     request.entrance_exam[2].year,
-    request.subjects[0].subject,
-    request.subjects[0].board,
-    request.subjects[0].max_mark,
-    request.subjects[0].max_obtained,
-    request.subjects[0].percentage,
     request.subjects[1].subject,
     request.subjects[1].board,
     request.subjects[1].max_mark,
@@ -158,6 +153,7 @@ exports.AdmissionForm = async (req, res) => {
     request.max_obtained,
     request.percentage,
     request.facilities,
+    request.type_facilities,
     request.transport_service,
     request.pickup_station,
     request.course_name,
