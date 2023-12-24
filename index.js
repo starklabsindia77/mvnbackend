@@ -16,7 +16,7 @@ app.use(bodyParser.json({ limit: '50mb' }));
 //app.use(bodyParser.urlencoded());
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 var corsOptions = {
-    origin: 'https://www.mvn.edu.in',
+    origin: 'https://mvn.edu.in',
     optionsSuccessStatus: 200 // For legacy browser support
 }
 
